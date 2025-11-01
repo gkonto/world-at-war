@@ -1,0 +1,13 @@
+# Build artifacts
+build/
+cmake-build-*/
+
+# Editor/OS
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# Binaries
+bin/
+
