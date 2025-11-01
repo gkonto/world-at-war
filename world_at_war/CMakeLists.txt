@@ -1,5 +1,6 @@
 add_executable(world_at_war
     src/main.cpp
+    src/game.cpp
 )
 
 target_include_directories(world_at_war PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
