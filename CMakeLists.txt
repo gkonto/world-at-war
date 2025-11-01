@@ -21,4 +21,4 @@ FetchContent_MakeAvailable(SFML)
 
 set(SFML_STATIC_LIBRARIES OFF CACHE BOOL "" FORCE)
 
-add_subdirectory(world_at_war)
+add_subdirectory(waw)
