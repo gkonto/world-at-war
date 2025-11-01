@@ -1,6 +1,7 @@
 #include "game.hpp"
-
+#include "level.hpp"
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 Game::Game(uint32_t x, uint32_t y)
     : window_(sf::VideoMode({x, y}), "World at War")
@@ -51,4 +52,12 @@ void Game::processEvents()
             }
         }
     }
+}
+
+bool Game::load(const std::string &configpath)
+{
+    bool res = true;
+    std::cout << "Path: " << configpath << std::endl;
+    level_ = std::make_unique<Level>(window_, configpath);
+    return res;
 }

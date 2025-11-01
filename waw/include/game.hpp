@@ -2,6 +2,7 @@
 #define GAME_HPP_INCLUDED
 
 #include <SFML/Graphics.hpp>
+#include "level.hpp"
 
 class Game
 {
@@ -11,6 +12,7 @@ public:
 
     Game(uint32_t x, uint32_t y);
     void run(int fps);
+    bool load(const std::string &configpath);
 
 private:
     void render();
@@ -18,6 +20,7 @@ private:
     void processEvents();
 
     sf::RenderWindow window_;
+    std::unique_ptr<Level> level_;
 };
 
 #endif
