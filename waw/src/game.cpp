@@ -2,6 +2,8 @@
 #include "level.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "gui/buttons.hpp"
+#include "gui/layouts.hpp"
 
 Game::Game(uint32_t x, uint32_t y)
     : window_(sf::VideoMode({x, y}), "World at War")
@@ -32,11 +34,16 @@ void Game::initGui()
 
 void Game::initMenu()
 {
+    auto *vlayout = new ui::VLayout;
+    auto *exit = new ui::TextButton("Exit"); // TODO who manages this item ?
+    vlayout->add(exit);
+    mainMenu_.setLayout(vlayout);
 }
 
 void Game::render()
 {
     window_.clear();
+    window_.draw(mainMenu_);
     window_.display();
 }
 

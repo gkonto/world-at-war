@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "level.hpp"
+#include "gui/frame.hpp"
 
 class Game
 {
@@ -21,6 +22,8 @@ private:
 
     void initGui();
     void initMenu();
+
+    ui::Frame mainMenu_;
 
     sf::RenderWindow window_;
     std::unique_ptr<Level> level_;

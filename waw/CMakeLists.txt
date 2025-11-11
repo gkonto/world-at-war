@@ -3,6 +3,9 @@ add_executable(world_at_war
     src/game.cpp
     src/level.cpp
     src/utils.cpp
+    src/gui/buttons.cpp
+    src/gui/layouts.cpp
+    src/gui/frame.cpp
 )
 
 target_include_directories(world_at_war PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
