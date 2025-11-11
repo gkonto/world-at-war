@@ -6,6 +6,7 @@
 Game::Game(uint32_t x, uint32_t y)
     : window_(sf::VideoMode({x, y}), "World at War")
 {
+    initGui();
 }
 
 void Game::run(int fps)
@@ -22,6 +23,15 @@ void Game::run(int fps)
             timeSinceLastUpdate -= timePerFrame;
         }
     }
+}
+
+void Game::initGui()
+{
+    initMenu();
+}
+
+void Game::initMenu()
+{
 }
 
 void Game::render()

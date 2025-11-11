@@ -19,6 +19,9 @@ private:
     void update(sf::Time deltaTime);
     void processEvents();
 
+    void initGui();
+    void initMenu();
+
     sf::RenderWindow window_;
     std::unique_ptr<Level> level_;
 };
