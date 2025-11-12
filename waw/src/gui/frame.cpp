@@ -1,6 +1,11 @@
 #include "frame.hpp"
 #include "layouts.hpp"
 
+ui::Frame::Frame(sf::RenderWindow &window)
+    : window_(window)
+{
+}
+
 void ui::Frame::setLayout(VLayout *l)
 {
     if (layout_)
@@ -14,5 +19,8 @@ void ui::Frame::setLayout(VLayout *l)
 
 void ui::Frame::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-    printf("ui::Frame::draw\n");
+    if (layout_)
+    {
+        target.draw(*layout_, states);
+    }
 }

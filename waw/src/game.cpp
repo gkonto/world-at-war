@@ -6,7 +6,8 @@
 #include "gui/layouts.hpp"
 
 Game::Game(uint32_t x, uint32_t y)
-    : window_(sf::VideoMode({x, y}), "World at War")
+    : window_(sf::VideoMode({x, y}), "World at War"), mainMenu_(window_)
+
 {
     initGui();
 }
@@ -24,6 +25,8 @@ void Game::run(int fps)
         {
             timeSinceLastUpdate -= timePerFrame;
         }
+
+        render();
     }
 }
 
