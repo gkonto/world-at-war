@@ -1,6 +1,8 @@
-# AsteroidClone (C++20 + SFML 3)
+# World at War (C++20 + SFML 3)
 
-A minimal starter for an Asteroids-style game using C++20 and SFML 3, built with CMake.
+# Prerequisites
+
+I solemnly swear that this repository will not be abandoned halfway through like a half-implemented feature branch named “final_v3_really_final”. No, this time I’m committed. This project will be nurtured, debugged, refactored, and loved until it reaches its glorious, feature-complete destiny (or at least until it compiles without warnings). If future-me ever tries to walk away, let this README stand as a legally non-binding but morally embarrassing reminder to finish what I started.
 
 ## Requirements
 - CMake 3.22+
@@ -20,7 +22,7 @@ cmake --preset dev-debug -S .
 cmake --build --preset dev-debug
 
 # Run
-./build/debug/bin/asteroid-clone
+./build/bin/world_at_war
 ```
 
 For a release build:
@@ -28,12 +30,11 @@ For a release build:
 ```sh
 cmake --preset release -S .
 cmake --build --preset release
-./build/release/bin/asteroid-clone
+./build/bin/world_at_war
 ```
 
 ## Structure
 - `src/` – source files (entry point in `main.cpp`)
-- `include/` – public headers
 - `assets/` – game assets (images, sounds, etc.)
 - `CMakeLists.txt` – CMake build script
 - `CMakePresets.json` – dev/release presets
