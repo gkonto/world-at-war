@@ -8,14 +8,14 @@ ui::Frame::Frame(sf::RenderWindow &w, Widget *parent)
 {
 }
 
-void ui::Frame::setLayout(VLayout *layout)
+void ui::Frame::setLayout(std::unique_ptr<VLayout> layout)
 {
-    layout_ = layout;
+    layout_ = std::move(layout);
 }
 
 ui::VLayout *ui::Frame::layout() const
 {
-    return layout_;
+    return layout_.get();
 }
 
 void ui::Frame::draw(sf::RenderTarget &target, sf::RenderStates states) const

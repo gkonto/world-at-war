@@ -2,20 +2,19 @@
 #include <SFML/Graphics.hpp>
 
 ui::TextButton::TextButton(Widget *parent, const char *text)
-    : Widget(parent) //, // text_(text)
+    : Widget(parent), label_(this, text)
 {
     setFillColor(sf::Color(200, 60, 60));
     setOutlineThickness(5);
     setOutlineColor(sf::Color(146, 20, 19));
-    // Default appearance; can be customized via setters
-    shape_.setSize({200.f, 50.f});
-    shape_.setFillColor(sf::Color(200, 60, 60));
+    setSize({200.f, 50.f});
 }
 
 void ui::TextButton::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     states.transform.translate(position());
     target.draw(shape_, states);
+    target.draw(label_, states);
 }
 
 sf::Vector2f ui::TextButton::size() const
@@ -46,5 +45,11 @@ void ui::TextButton::setOutlineThickness(float thickness)
 
 void ui::TextButton::updateShape()
 {
-    // sf::Vector2f label_size = label_
+    sf::Vector2f label_size = label_.size();
+    uint32_t char_size = label_.characterSize();
+
+    shape_.setSize(sf::Vector2f(char_size * 2 + label_size.x, char_size * 2 + label_size.y));
+    label_.setPosition(char_size, char_size);
+
+    Widget::updateShape();
 }

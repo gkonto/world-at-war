@@ -22,7 +22,7 @@ namespace ui
         sf::Vector2f size() const override;
 
     private:
-        // Label label_;
+        Label label_;
         sf::RectangleShape shape_;
     };
 }

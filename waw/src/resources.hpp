@@ -4,7 +4,7 @@
 #include <array>
 #include <SFML/Graphics.hpp>
 
-enum class FontTypes
+enum class FontType
 {
     Gui,
 };
@@ -13,6 +13,7 @@ class FontResourceManager
 {
 public:
     static FontResourceManager &get();
+    const sf::Font &getFont(FontType type);
 
 private:
     FontResourceManager();

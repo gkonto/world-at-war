@@ -8,11 +8,18 @@ namespace ui
     class Label : public Widget
     {
     public:
-        explicit Label(Widget *parent);
+        explicit Label(Widget *parent, const std::string &text);
+
+        void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
+        sf::Vector2f size() const override;
+
         void setText(const std::string &text);
+        void setCharacterSize(uint32_t size);
+        uint32_t characterSize() const;
+        void setTextColor(const sf::Color &color);
 
     private:
-        // sf::Text text_;
+        sf::Text text_;
     };
 }
 

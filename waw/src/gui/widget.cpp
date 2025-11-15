@@ -7,6 +7,8 @@ ui::Widget::Widget(Widget *parent)
 
 void ui::Widget::setPosition(float x, float y)
 {
+    position_.x = x;
+    position_.y = y;
 }
 
 const sf::Vector2f &ui::Widget::position() const

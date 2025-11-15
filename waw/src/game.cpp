@@ -36,13 +36,24 @@ void Game::initGui()
 
 void Game::initMenu()
 {
-    auto *layout = new ui::VLayout(nullptr);
+    auto layout = std::make_unique<ui::VLayout>(nullptr);
     layout->setSpace(25);
+    auto name_lbl = std::make_unique<ui::Label>(nullptr, "World at War");
+    auto name2_lbl = std::make_unique<ui::Label>(nullptr, "Eisenbach Gap");
+
+    name_lbl->setCharacterSize(40);
+    name2_lbl->setCharacterSize(25);
+
+    name_lbl->setTextColor(sf::Color::Red);
+    name2_lbl->setTextColor(sf::Color::Red);
+
     auto play_btn = std::make_unique<ui::TextButton>(nullptr, "Play");
     auto exit_btn = std::make_unique<ui::TextButton>(nullptr, "Exit"); // TODO who manages this item ?
+    layout->add(std::move(name_lbl));
+    layout->add(std::move(name2_lbl));
     layout->add(std::move(play_btn));
     layout->add(std::move(exit_btn));
-    mainMenu_.setLayout(layout);
+    mainMenu_.setLayout(std::move(layout));
 }
 
 void Game::render()

@@ -11,3 +11,12 @@ FontResourceManager::FontResourceManager()
     : gui_(getAssetPath("font/trs-million.ttf"))
 {
 }
+
+const sf::Font &FontResourceManager::getFont(FontType type)
+{
+    switch (type)
+    {
+    case FontType::Gui:
+        return gui_;
+    }
+}
