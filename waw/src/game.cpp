@@ -6,7 +6,7 @@
 #include "gui/layouts.hpp"
 
 Game::Game(uint32_t x, uint32_t y)
-    : window_(sf::VideoMode({x, y}), "World at War"), mainMenu_(window_)
+    : window_(sf::VideoMode({x, y}), "World at War"), mainMenu_(window_, nullptr)
 
 {
     initGui();
@@ -25,7 +25,6 @@ void Game::run(int fps)
         {
             timeSinceLastUpdate -= timePerFrame;
         }
-
         render();
     }
 }
@@ -37,10 +36,13 @@ void Game::initGui()
 
 void Game::initMenu()
 {
-    auto *vlayout = new ui::VLayout;
-    auto *exit = new ui::TextButton("Exit"); // TODO who manages this item ?
-    vlayout->add(exit);
-    mainMenu_.setLayout(vlayout);
+    auto *layout = new ui::VLayout(nullptr);
+    layout->setSpace(25);
+    auto play_btn = std::make_unique<ui::TextButton>(nullptr, "Play");
+    auto exit_btn = std::make_unique<ui::TextButton>(nullptr, "Exit"); // TODO who manages this item ?
+    layout->add(std::move(play_btn));
+    layout->add(std::move(exit_btn));
+    mainMenu_.setLayout(layout);
 }
 
 void Game::render()
@@ -77,7 +79,6 @@ void Game::processEvents()
 bool Game::load(const std::string &configpath)
 {
     bool res = true;
-    std::cout << "Path: " << configpath << std::endl;
     level_ = std::make_unique<Level>(window_, configpath);
     return res;
 }

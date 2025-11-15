@@ -1,5 +1,6 @@
 #include "game.hpp"
 #include "utils.hpp"
+#include "resources.hpp"
 
 int main(void)
 {

@@ -3,23 +3,27 @@
 
 #include <string>
 #include <SFML/Graphics.hpp>
+#include "widget.hpp"
+#include "label.hpp"
 
 namespace ui
 {
-    class TextButton : public sf::Drawable
+    class TextButton : public Widget
     {
     public:
-        explicit TextButton(const char *text);
-        void setPosition(const sf::Vector2f &pos);
-        const sf::Vector2f &getPosition() const;
+        explicit TextButton(Widget *parent, const char *text);
         void setSize(const sf::Vector2f &size);
         void setFillColor(const sf::Color &color);
+        void setOutlineColor(const sf::Color &color);
+        void setOutlineThickness(float thickness);
+
+        void updateShape() override;
         void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
+        sf::Vector2f size() const override;
 
     private:
-        std::string text_;
+        // Label label_;
         sf::RectangleShape shape_;
-        sf::Vector2f position_;
     };
 }
 
