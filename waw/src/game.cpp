@@ -103,6 +103,7 @@ void Game::processEvents()
     while (auto eventOpt = window_.pollEvent())
     {
         const auto &event = eventOpt.value();
+        gui_.handleEvent(event);
         if (event.is<sf::Event::Closed>())
         {
             window_.close();
