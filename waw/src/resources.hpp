@@ -3,7 +3,7 @@
 
 #include <array>
 #include <SFML/Graphics.hpp>
-
+#include <TGUI/TGUI.hpp>
 enum class FontType
 {
     Gui,
@@ -13,11 +13,11 @@ class FontResourceManager
 {
 public:
     static FontResourceManager &get();
-    const sf::Font &getFont(FontType type);
+    const tgui::Font &getFont(FontType type);
 
 private:
     FontResourceManager();
-    sf::Font gui_;
+    tgui::Font gui_;
 };
 
 #endif

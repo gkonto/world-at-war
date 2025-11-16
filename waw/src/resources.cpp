@@ -8,11 +8,11 @@ FontResourceManager &FontResourceManager::get()
 }
 
 FontResourceManager::FontResourceManager()
-    : gui_(getAssetPath("font/trs-million.ttf"))
+    : gui_(tgui::Font{getAssetPath("font/trs-million.ttf")})
 {
 }
 
-const sf::Font &FontResourceManager::getFont(FontType type)
+const tgui::Font &FontResourceManager::getFont(FontType type)
 {
     switch (type)
     {

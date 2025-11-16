@@ -4,7 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "level.hpp"
 #include "gui/frame.hpp"
-
+#include <TGUI/TGUI.hpp>
+#include <TGUI/Backend/SFML-Graphics.hpp>
 class Game
 {
 public:
@@ -23,9 +24,10 @@ private:
     void initGui();
     void initMenu();
 
-    ui::Frame mainMenu_;
+    // ui::Frame mainMenu_;
 
     sf::RenderWindow window_;
+    tgui::Gui gui_;
     std::unique_ptr<Level> level_;
 };
 

@@ -4,10 +4,11 @@
 #include <iostream>
 #include "gui/buttons.hpp"
 #include "gui/layouts.hpp"
+#include <TGUI/TGUI.hpp>
+#include "resources.hpp"
 
 Game::Game(uint32_t x, uint32_t y)
-    : window_(sf::VideoMode({x, y}), "World at War"), mainMenu_(window_, nullptr)
-
+    : window_(sf::VideoMode({x, y}), "World at War"), gui_(window_)
 {
     initGui();
 }
@@ -36,30 +37,60 @@ void Game::initGui()
 
 void Game::initMenu()
 {
-    auto layout = std::make_unique<ui::VLayout>(nullptr);
-    layout->setSpace(25);
-    auto name_lbl = std::make_unique<ui::Label>(nullptr, "World at War");
-    auto name2_lbl = std::make_unique<ui::Label>(nullptr, "Eisenbach Gap");
+    auto layout = tgui::VerticalLayout::create({"30%", "30%"});
+    layout->setOrigin(0.5f, 0.5f);
+    layout->setPosition({"50%", "50%"});
 
-    name_lbl->setCharacterSize(40);
-    name2_lbl->setCharacterSize(25);
+    auto nameLbl = tgui::Label::create("World at War");
+    auto name2Lbl = tgui::Label::create("Eisenbach Gap");
+    nameLbl->setTextSize(40);
+    name2Lbl->setTextSize(25);
+    nameLbl->setHorizontalAlignment(tgui::HorizontalAlignment::Center);
+    name2Lbl->setHorizontalAlignment(tgui::HorizontalAlignment::Center);
 
-    name_lbl->setTextColor(sf::Color::Red);
-    name2_lbl->setTextColor(sf::Color::Red);
+    // TGUI font that corresponds to FontType::Gui
+    auto &gui_font = FontResourceManager::get().getFont(FontType::Gui);
 
-    auto play_btn = std::make_unique<ui::TextButton>(nullptr, "Play");
-    auto exit_btn = std::make_unique<ui::TextButton>(nullptr, "Exit"); // TODO who manages this item ?
-    layout->add(std::move(name_lbl));
-    layout->add(std::move(name2_lbl));
-    layout->add(std::move(play_btn));
-    layout->add(std::move(exit_btn));
-    mainMenu_.setLayout(std::move(layout));
+    nameLbl->getRenderer()->setFont(gui_font);
+    name2Lbl->getRenderer()->setFont(gui_font);
+    nameLbl->getRenderer()->setTextColor(tgui::Color::Red);
+    name2Lbl->getRenderer()->setTextColor(tgui::Color::Red);
+
+    auto playBtn = tgui::Button::create("Play");
+    auto exitBtn = tgui::Button::create("Exit");
+
+    auto styleButton = [&](const tgui::Button::Ptr &btn)
+    {
+        auto r = btn->getRenderer();
+        r->setFont(gui_font);                      // FontType::Gui equivalent
+        r->setBackgroundColor({200, 60, 60});      // base red
+        r->setBackgroundColorHover({230, 90, 90}); // lighter on hover
+        r->setBackgroundColorDown({160, 40, 40});  // darker when pressed
+        r->setBorderColor({146, 20, 19});          // outline red
+        r->setTextColor(tgui::Color::Black);
+        r->setBorders({3, 3, 3, 3});
+    };
+
+    styleButton(playBtn);
+    styleButton(exitBtn);
+
+    layout->add(nameLbl);
+    layout->add(name2Lbl);
+    layout->add(playBtn);
+    layout->add(exitBtn);
+    layout->getRenderer()->setSpaceBetweenWidgets(10.f);
+
+    gui_.add(layout);
+
+    exitBtn->onPress([this]
+                     { window_.close(); });
 }
 
 void Game::render()
 {
     window_.clear();
-    window_.draw(mainMenu_);
+    gui_.draw();
+    //  window_.draw(mainMenu_);
     window_.display();
 }
 

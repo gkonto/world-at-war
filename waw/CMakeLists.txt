@@ -4,11 +4,11 @@ add_executable(world_at_war
     src/level.cpp
     src/utils.cpp
     src/resources.cpp
-    src/gui/buttons.cpp
-    src/gui/layouts.cpp
-    src/gui/frame.cpp
-    src/gui/widget.cpp
-    src/gui/label.cpp
+    # src/gui/buttons.cpp
+    # src/gui/layouts.cpp
+    # src/gui/frame.cpp
+    # src/gui/widget.cpp
+    # src/gui/label.cpp
 )
 
 target_include_directories(world_at_war PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -16,6 +16,7 @@ target_include_directories(world_at_war PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/incl
 target_link_libraries(world_at_war PRIVATE
     SFML::Graphics
     SFML::Audio
+    TGUI::TGUI
 )
 
 target_compile_features(world_at_war PRIVATE cxx_std_20)

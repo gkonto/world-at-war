@@ -19,6 +19,13 @@ FetchContent_Declare(SFML
         SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
+set(TGUI_BACKEND SFML_GRAPHICS CACHE STRING "" FORCE)
+set(TGUI_BUILD_FRAMEWORK OFF CACHE BOOL "" FORCE)
+FetchContent_Declare(TGUI
+        GIT_REPOSITORY https://github.com/texus/TGUI.git
+        GIT_TAG v1.5.0)
+FetchContent_MakeAvailable(TGUI)
+
 set(SFML_STATIC_LIBRARIES OFF CACHE BOOL "" FORCE)
 
 add_subdirectory(waw)
