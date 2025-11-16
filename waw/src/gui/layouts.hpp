@@ -15,12 +15,12 @@ namespace ui
 
         sf::Vector2f size() const override;
         void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
+        void updateShape() override;
 
         void add(std::unique_ptr<Widget> b);
         void setSpace(int pixels);
 
     private:
-        void updateShape() override;
         std::vector<std::unique_ptr<Widget>> widgets_;
         int space_;
     };

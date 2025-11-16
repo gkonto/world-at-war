@@ -11,6 +11,7 @@ ui::Frame::Frame(sf::RenderWindow &w, Widget *parent)
 void ui::Frame::setLayout(std::unique_ptr<VLayout> layout)
 {
     layout_ = std::move(layout);
+    layout_->setParent(this);
 }
 
 ui::VLayout *ui::Frame::layout() const

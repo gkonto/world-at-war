@@ -48,7 +48,7 @@ void ui::TextButton::updateShape()
     sf::Vector2f label_size = label_.size();
     uint32_t char_size = label_.characterSize();
 
-    shape_.setSize(sf::Vector2f(char_size * 2 + label_size.x, char_size * 2 + label_size.y));
+    shape_.setSize({char_size * 2 + label_size.x, char_size * 2.5f + label_size.y});
     label_.setPosition(char_size, char_size);
 
     Widget::updateShape();

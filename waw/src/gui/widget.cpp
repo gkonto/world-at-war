@@ -19,6 +19,7 @@ const sf::Vector2f &ui::Widget::position() const
 void ui::Widget::setParent(Widget *parent)
 {
     parent_ = parent;
+    updateShape();
 }
 
 ui::Widget *ui::Widget::parent() const

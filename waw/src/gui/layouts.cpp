@@ -49,12 +49,12 @@ void ui::VLayout::updateShape()
         max_x = std::max(max_x, size.x);
     }
 
-    float pos_y = parent() ? parent()->size().y - size().y / 2.f : space_;
+    float pos_y = parent() ? (parent()->size().y - size().y) / 2.f : space_;
 
     for (auto &w : widgets_)
     {
         auto size = w->size();
-        w->setPosition(max_x - size.x / 2., pos_y);
+        w->setPosition((max_x - size.x) / 2., pos_y);
         pos_y += size.y + space_;
     }
     Widget::updateShape();
